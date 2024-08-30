@@ -1,16 +1,23 @@
-// welcome to blot!
+setDocDimensions(800, 600)
 
-// check out this guide to learn how to program in blot
-// https://blot.hackclub.com/editor?guide=start
+const polylines = [
+  [[0, 0], [100, 100], [200, 200]]
+]
 
-const width = 270;
-const height = 270;
+const scaledPolylines = bt.scale(polylines, 2)
+drawLines(scaledPolylines)
 
-setDocDimensions(width, height);
+const nonUniformlyScaledPolylines = bt.scale(polylines, [2, 3])
+///drawLines(nonUniformlyScaledPolylines)
 
-drawLines([
-    [[120, 10], [120, 75]],
-    [[120, 75], [70, 65]],
-    [[70, 65], [73, 86]],
-    [[73, 86], [15, 120]],
-])
+const rotatedPolylines = bt.rotate(polylines, 90)
+///drawLines(rotatedPolylines)
+
+const translatedPolylines = bt.translate(polylines, [100, 100])
+///drawLines(translatedPolylines)
+
+const resampledPolylines = bt.resample(polylines, 1000)
+//drawLines(resampledPolylines)
+
+const simplifiedPolylines = bt.simplify(polylines, 1)
+//drawLines(resampledPolylines)
