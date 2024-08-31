@@ -9,54 +9,70 @@ const height = 125;
 setDocDimensions(width, height);
 
 // store final lines here
-const finalLines = [];
+// const finalLines = [];
 
-// create a polyline
-//const polyline1 = [
-  [[0, 0],
-  [125, 125]],
-  [[0, 125],
-  [125, 0]]
-//]
+// // create a polyline
+// const polyline = [
+//   [30, 90],
+//   [100, 90],
+//   [100, 30],
+//   [30, 30],
+//   [30, 90]
+// ];
 
-//const coveredPolylines = bt.iteratePoints(polyline1, (pt, t) => {
-//  const [x, y] = pt
-//  return [x, y+20]
-//})
+// add the polyline to the final lines
+// finalLines.push(polyline);
+
+// transform lines using the toolkit
+// bt.rotate(finalLines, 45);
 
 // draw it
-//drawLines(polyline1)
-//drawLines(coveredPolylines);
+//drawLines(finalLines);
 
-//const polylines = [[[10, 10], [20, 20], [30, 10]]];
-//bt.originate(polylines);
+// thicken an open curve
+// const polylines0 = [[[0, 0], [10, 10], [20, 0]]];
+// bt.offset(polylines0, 3);
 
-//const polylines = [[[0, 0], [10, 10], [20, 5], [30, 10]]];
-//bt.resample(polylines, 5);
+// // expand a closed curve
+// const polylines1 = [[[0, 0], [10, 10], [20, 0], [0, 0]]];
+// bt.offset(polylines1, 2);
 
-//const polylines = [[[0, 0], [5, 10], [5, 10], [12, 4], [27, 24]]];
-//bt.simplify(polylines, 5);
+// // thicken a closed curve
+// const polylines2 = [[[0, 0], [10, 10], [20, 0], [0, 0]]];
+// bt.offset(polylines2, 3, { endType: "openRound" });
 
-//const polylines = [[[0, 0], [10, 10], [20, 20]]];
-//bt.trim(polylines, 0.25, 0.75);
+const finalLines = []
 
-//const polyline1 = [[0, 0], [10, 10]];
-//const polyline2 = [[10, 10], [20, 20]]
-//const polylines = [polyline1, polyline2];
-//bt.merge(polylines);
+// drawLines(polylines0)
+const curve1 = [[15, 90], [15, 95], [17, 100], [22, 101]]
+const lines = bt.catmullRom(curve1, 100); // Returns a polyline with 100 points forming a smooth curve through the specified points
+finalLines.push(lines)
 
-//const polylines1 = [[[0, 0], [10, 10]]];
-//const polylines2 = [[[20, 20], [30, 30]]];
-//bt.join(polylines1, polylines2);
+const polyline = [[22, 101], [30, 101], [30, 97], [50, 97]]
+finalLines.push(polyline)
 
-// const originalPolylines = [[[0, 0], [10, 10]]];
-//const polylines = bt.copy(originalPolylines);
+const curve2 = [[50, 97], [52, 95], [55, 94], [58, 95], [60, 97]]
+const lines0 = bt.catmullRom(curve2, 100); // Returns a polyline with 100 points forming a smooth curve through the specified points
+finalLines.push(lines0)
 
-// const polylinesToCut = [[[0, 0], [10, 10], [20, 0]]];
-// const cuttingPolylines = [[[5, 5], [15, 5]]];
-// bt.cut(polylinesToCut, cuttingPolylines);
+const curve3 = [[95, 90], [95, 95], [93, 100], [88, 101]]
+const lines1 = bt.catmullRom(curve3, 100)
+finalLines.push(lines1)
 
-const basePolylines = [[[0, 0], [10, 10], [20, 0]]];
-const coveringPolylines = [[[5, -5], [15, 15]]];
-bt.cover(basePolylines, coveringPolylines);
-drawLines(Polylines)
+const polyline1 = [[88, 101], [80, 101], [80, 97], [60, 97]]
+finalLines.push(polyline1)
+
+const polyline2 = [[95, 90], [95, 40]]
+finalLines.push(polyline2)
+
+const polyline3 = [[15, 90], [15, 40]]
+finalLines.push(polyline3)
+
+const curve4 = [[15, 40], [15, 30], [17, 25], [20, 20], [25, 15], [40, 10]]
+const lines2 = bt.catmullRom(curve4, 1000); // Returns a polyline with 100 points forming a smooth curve through the specified points
+finalLines.push(lines2)
+
+const polyline4 = [[40, 10], [65, 10], [95, 40]]
+finalLines.push(polyline4)
+
+drawLines(finalLines)
